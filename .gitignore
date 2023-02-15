@@ -1,0 +1,14 @@
+### OS Stuff ###
+._*
+.vscode/
+**/.DS_Store
+
+### Terraform ###
+**/.terraform
+**/.terraform.lock.hcl
+**/.terraform.tfstate.lock.info
+**/.terraform/*
+**/*.tfplan
+**/*.tfstate
+**/*.tfstate.backup
+**/lambda_function_*.zip
