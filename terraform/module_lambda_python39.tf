@@ -4,7 +4,7 @@ module "lambda_python39" {
   source = "github.com/terraform-module/terraform-aws-lambda?ref=v2.9.0"
 
   function_name  = "python39-${each.key}"
-  filename       = "../aws/lambdas/python39/python39.zip"
+  filename       = "../aws/lambdas/python3.9/python3.9.zip"
   description    = "A python 3.9 lambda"
   handler        = "main.lambda_handler"
   runtime        = "python3.9"
