@@ -28,7 +28,7 @@ variable "lambdas_to_deploy" {
 variable "lambda_sizes" {
   type        = list(string)
   description = "A list of memory sizes to deploy for each lambda"
-  default     = [
+  default = [
     128,
     256,
     512,

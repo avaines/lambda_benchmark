@@ -2,18 +2,28 @@
 AWS Lambda benchmarking resources
 
 # Prep the deployment
-Modify the terraform/main.auto.tfvars file to specific which lambdas you want deploying and what memory configurations
+Modify the terraform/main.auto.tfvars file to specify which lambdas you want deploying and what memory configurations
+
+# Build the lambda functions manually
+```
+pushd aws/lambdas
+./build_lambdas.sh
+popd
+```
 
 # Deploy the lambda
+(This will also build the lambda function packages)
 ```
-cd terraform
+pushd terraform
 terraform fmt
 terraform init
 TF_VAR_region=us-east-1 TF_VAR_aws_account_id=${AWS_ACCOUNT_ID} terraform apply
+popd
 ```
 
 # Destroy all the things
 ```
-cd terraform
+pushd terraform
 TF_VAR_region=us-east-1 TF_VAR_aws_account_id=${AWS_ACCOUNT_ID} terraform destroy
+popd
 ```
