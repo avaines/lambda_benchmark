@@ -16,3 +16,7 @@
 aws/lambdas/net7aot/src/net7aot/.idea/.idea.net7aot.dir/.idea/
 
 aws/lambdas/net7aot/src/net7aot/obj/
+aws/lambdas/net7aot/src/net7aot/bin/
+
+aws/lambdas/net7aot/test/net7aot.Tests/obj/
+aws/lambdas/net7aot/test/net7aot.Tests/bin/
