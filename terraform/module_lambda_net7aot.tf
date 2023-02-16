@@ -4,7 +4,7 @@ module "lambda_net7aot" {
   source = "github.com/terraform-module/terraform-aws-lambda?ref=v2.9.0"
 
   function_name  = "net7aot-${each.key}"
-  filename       = "../aws/lambdas/net7aot/net7aot.zip"
+  filename       = "../aws/lambdas/net7aot/net7aot-manual.zip"
   description    = "A .net7 AOT lambda"
   handler        = "main"
   runtime        = "provided.al2"

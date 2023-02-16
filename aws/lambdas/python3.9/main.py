@@ -1,3 +1,7 @@
+import logging
+logger = logging.getLogger()
+logger.setLevel(logging.INFO)
+
 def lambda_handler(event, context):
-    print(event)
-    return 'Hello World!'
+    logger.info('Lambda Benchmark')
+    return event.upper()

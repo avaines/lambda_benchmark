@@ -1,9 +1,9 @@
 environment = "main"
 
 lambdas_to_deploy = {
-  # go = false
-  python39 = false
-  nodejs18 = false
+  go = false
+  # python39 = false
+  # nodejs18 = false
   # net7aot  = false
 }
 
