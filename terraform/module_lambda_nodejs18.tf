@@ -4,7 +4,7 @@ module "lambda_nodejs18" {
   source = "github.com/terraform-module/terraform-aws-lambda?ref=v2.9.0"
 
   function_name  = "node18-${each.key}"
-  filename       = data.archive_file.lambda_nodejs18[0].output_path
+  filename       = "../aws/lambdas/nodejs18/nodejs18.zip"
   description    = "A nodeJS 18 lambda"
   handler        = "index.handler"
   runtime        = "nodejs18.x"

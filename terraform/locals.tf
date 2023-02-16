@@ -12,6 +12,7 @@ locals {
       go       = true
       python39 = true
       nodejs18 = true
+      net7aot  = true
     },
     var.lambdas_to_deploy
   )

@@ -11,8 +11,6 @@
 **/*.tfplan
 **/*.tfstate
 **/*.tfstate.backup
-**/lambda_function_*.zip
+aws/lambdas/*/*.zip
 
 aws/lambdas/net7aot/src/net7aot/.idea/.idea.net7aot.dir/.idea/
-
-aws/lambdas/net7aot/src/net7aot/obj/

@@ -4,7 +4,7 @@ module "lambda_go" {
   source = "github.com/terraform-module/terraform-aws-lambda?ref=v2.9.0"
 
   function_name  = "go-${each.key}"
-  filename       = data.archive_file.lambda_go[0].output_path
+  filename       = "../aws/lambdas/go/go.zip"
   description    = "A GoLang lambda"
   handler        = "main"
   runtime        = "go1.x"
