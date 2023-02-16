@@ -17,7 +17,7 @@ public class Function
 
     public static string FunctionHandler(string input, ILambdaContext context)
     {
-        LambdaLogger.Log("net7aot handler");
+        LambdaLogger.Log("Lambda benchmark");
         return input.ToUpper();
     }
 }
