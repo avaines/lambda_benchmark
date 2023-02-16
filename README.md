@@ -15,10 +15,14 @@ popd
 (This will also build the lambda function packages)
 ```
 pushd terraform
-terraform fmt
-terraform init
+terraform fmt && terraform init
 TF_VAR_region=us-east-1 TF_VAR_aws_account_id=${AWS_ACCOUNT_ID} terraform apply
 popd
+```
+
+# Invoke functions and generate the report
+```
+
 ```
 
 # Destroy all the things
