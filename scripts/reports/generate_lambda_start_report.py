@@ -40,12 +40,12 @@ def generate_lambda_duration_report(log_groups, start_timestamp, region):
         filter @type = “REPORT”
         | stats
         count(@initDuration) as numColdStarts,
+        avg(@initDuration) as avgColdStartTime,
         count(@duration) - numColdStarts as numWarmStarts,
-        max(@initDuration) as coldStartTime,
         avg(@duration) as avgDuration,
         avg(@maxMemoryUsed) as avgMemoryUsed,
-        max(@memorySize) as memoryAllocated,
-        (avg(@maxMemoryUsed)/max(@memorySize))*100 as percentageMemoryUsed
+        avg(@memorySize) as avgMemoryAllocated,
+        (avg(@maxMemoryUsed)/max(@memorySize))*100 as avgPercentageMemoryUsed
         by @log
     """
 
