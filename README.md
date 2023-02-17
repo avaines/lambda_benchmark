@@ -22,7 +22,7 @@ popd
 
 # Invoke functions and generate the report
 ```
-
+python scripts/reports/generate_lambda_start_report.py --invocations 5 --cycles 5 --pause 10
 ```
 
 # Destroy all the things

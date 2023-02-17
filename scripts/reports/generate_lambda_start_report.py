@@ -72,32 +72,39 @@ def generate_lambda_duration_report(log_groups, start_timestamp, region):
     else:
         return "Query Failed"
 
-
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
-    parser.add_argument('--invocations', "-i", help='Number of of times to invoke each function', default=2)
+    parser.add_argument('--invocations', "-i", type=int, help='Number of of times to invoke each function per cycle', default=2)
+    parser.add_argument('--cycles', "-c", type=int, help='Number of times to run each cycle', default=1)
+    parser.add_argument('--pause', "-p", type=int, help='Pause between cycles in minutes, AWS advise 45-60 mins between cold starts', default=1)
     parser.add_argument('--region', "-r", help='AWS Region to run the report in (lambda region extracted from arn)', default="us-east-1")
 
     args = parser.parse_args()
-
     start_time = datetime.now()
 
-    for _ in range(0, args.invocations):
-        for lambda_arn in lambda_arns:
-            print(f"Running {lambda_arn}: {invoke_lambda_function(lambda_arn)}")
+    print(f"Preparing for {args.cycles} cycles with a {args.pause} minutes pause between. Within each cycle, all functions will be called {args.invocations} times")
+
+    for c in range(1, args.cycles):
+        print(f"Running cycle {c} of {args.cycles}")
+        for i in range(0, args.invocations):
+            for lambda_arn in lambda_arns:
+                print(f"Running {lambda_arn}: {invoke_lambda_function(lambda_arn)}")
+        if (args.cycles - c) > 0:
+            print(f"Pausing at {datetime.now().strftime('%H:%M:%S')} for {args.cycles} minutes")
+            time.sleep(args.pause * 60)
 
     finshed_invoke_time = datetime.now()
 
     print()
     print(f"Invoking all functions took {(finshed_invoke_time - start_time).seconds} seconds to run")
-    mins_for_logs_to_turn_up = 2
+    mins_for_logs_to_turn_up = 5
     print(f"Waiting {mins_for_logs_to_turn_up} minutes for all the logs to make their way to CloudWatch...")
     time.sleep(mins_for_logs_to_turn_up * 60)
     print()
 
     lambda_duration_report = generate_lambda_duration_report(cloudwatch_log_groups, int(start_time.timestamp()), args.region)
 
-    with open('output.csv', 'w', newline='') as csvfile:
+    with open('report.csv', 'w', newline='') as csvfile:
         csvwriter = csv.writer(csvfile)
 
         # Write the headers to the CSV file
