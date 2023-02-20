@@ -1,4 +1,4 @@
 exports.handler = async (event) => {
-    console.log(event);
-    return 'Hello from Lambda!';
+    console.log('Lambda Benchmark');
+    return event.toUpperCase();
 };
